@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import ReactConfetti from "react-confetti";
 
 export default function Game() {
-    //demo
+
     const [game, setGame] = useState(false)
     const [easy, setEasy] = useState(false)
     const [medium, setMedium] = useState(false)
