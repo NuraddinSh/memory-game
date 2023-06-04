@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 import ReactConfetti from "react-confetti";
 
 export default function Game() {
-
     const [game, setGame] = useState(false)
     const [easy, setEasy] = useState(false)
     const [medium, setMedium] = useState(false)
@@ -149,7 +148,7 @@ export default function Game() {
             {lost && <h3>You Lost</h3>}
             {game && <button onClick={!lost &&tip<2 &&gameStarter}>{tip===0 ? "Start": tip===1? "Look Again" : "0"}</button>}
 
-            <footer className={"footer"}>copyright</footer>
+            <footer className={"footer"}>Copyright © 2023 Code Inc. All Rights Reserved</footer>
         </div>
     )
 }

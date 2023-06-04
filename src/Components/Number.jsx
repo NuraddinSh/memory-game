@@ -2,7 +2,7 @@ import React from "react";
 
 // component returns box for wrapping a number
 export default function NumberBox(props) {
-    //css for not showing numbers greater than 10.
+    //css for not showing numbers greater than 10
     const styles = {
         opacity: props.number > 10? '0' : `1`,
     }
