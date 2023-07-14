@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import NumberBox from "../Components/Number";
 import { nanoid } from 'nanoid';
 import ReactConfetti from "react-confetti";
+import Popup from "reactjs-popup";
 
 export default function Game() {
     const [game, setGame] = useState(false)
@@ -120,21 +121,59 @@ export default function Game() {
         <div className={"main-page"}>
             {won && numOrder > numbers.length && <ReactConfetti />}
             <nav className={"navigation"}>
-                <h1>MEMORY GAME</h1>
+                <h1 onClick={newGame}>MEMORY GAME</h1>
+                <div className={"info"}>
+                    <Popup trigger=
+                               {<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    className="bi bi-info-circle" viewBox="0 0 16 16">
+                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                   <path
+                                       d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                               </svg>}
+                           modal nested>
+                        {
+                            close => (
+                                <div className='modal'>
+                                    <div className='content'>
+                                        <h3>HOW TO PLAY</h3>
+                                        <ul>
+                                            <li>Numbers are randomly distributed among boxes</li>
+                                            <li>Choose difficulty mode</li>
+                                            <li>After you start the game you will have 2 seconds to look at placement of numbers in boxes and remember them</li>
+                                            <li>Select the boxes in an increasing order according to their numbers</li>
+                                            <li>If you cannot proceed, you have one more chance to look at the positions of the numbers</li>
+                                            <li>You can always start a new game</li>
+                                        </ul>
+                                    </div>
+                                    <div onClick={() => close()} className={"close-btn"}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                             fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path
+                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </Popup>
+                </div>
             </nav>
+
             {game && <button className={"new-game-button"} onClick={newGame}>Start New Game</button>}
             {!game &&
                 <div className={"modes"}>
 
-                    <button className={"mode-btn"} onClick={()=> {
+                    <button className={"mode-btn green glow-btn"} onClick={()=> {
                         setEasy(true)
                         setGame(true)
                     }}>Easy</button>
-                    <button className={"mode-btn"} onClick={()=> {
+                    <button className={"mode-btn blue glow-btn"} onClick={()=> {
                         setMedium(true)
                         setGame(true)
                     }}>Medium</button>
-                    <button className={"mode-btn"} onClick={()=> {
+                    <button className={"mode-btn red glow-btn"} onClick={()=> {
                         setHard(true)
                         setGame(true)
                     }}>Hard</button>
@@ -146,7 +185,8 @@ export default function Game() {
                 {hard && gameSetter()}
             </div>}
             {lost && <h3>You Lost</h3>}
-            {game && <button onClick={!lost &&tip<2 &&gameStarter}>{tip===0 ? "Start": tip===1? "Look Again" : "0"}</button>}
+            {won && <h3>Congratulations</h3>}
+            {game && !lost&& !won ? <button className={"start-btn"} onClick={!lost &&tip<2 &&gameStarter}>{tip===0 ? "Start Game": tip===1? "Look Again" : "Tip: 0"}</button> : ""}
 
             <footer className={"footer"}>Copyright © 2023 Code Inc. All Rights Reserved</footer>
         </div>
