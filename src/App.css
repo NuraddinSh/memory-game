@@ -128,3 +128,12 @@ button:hover {
     padding: 1em;
     background-color: aquamarine;
 }
+@media screen and (max-width: 600px) {
+    .main-page {
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        width: auto;
+        margin: 0;
+    }
+}
